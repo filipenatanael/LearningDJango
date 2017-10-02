@@ -19,4 +19,4 @@ class Course(models.Model):
     created_at = models.DateTimeField('Created in', auto_now_add=True)
     updated_at = models.DateTimeField('Updated at', auto_now_add=True)
 
-    object = CourseManager()
+    objects = CourseManager()
