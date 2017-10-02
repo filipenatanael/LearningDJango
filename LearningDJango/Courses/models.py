@@ -3,11 +3,18 @@ from django.db import models
 # Create your models here.
 
 class CourseManager(models.Manager):
+    #Course.objects.search('Phyton')
     def search(self, query):
         return self.get_queryset().filter(
             models.Q(name__icontains=query) | \
             models.Q(description__icontains=query)
         )
+    def insert(self, name, description):
+        newCourse = Course()
+        newCourse.name = name
+        newCourse.description = description
+        newCourse.save()
+
 
 class Course(models.Model):
     name = models.CharField('Name',max_length=100)
