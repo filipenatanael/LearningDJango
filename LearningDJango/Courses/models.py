@@ -2,6 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+class CourseManager(models.Manager)
+    def search(self, query):
+        return self.get_queryset().filter(
+            name__icontains=query, description__icontains=query
+        )
+
 class Course(models.Model):
     name = models.CharField('Name',max_length=100)
     slug = models.SlugField('Shortcut')
@@ -11,3 +17,5 @@ class Course(models.Model):
 
     created_at = models.DateTimeField('Created in', auto_now_add=True)
     updated_at = models.DateTimeField('Updated at', auto_now_add=True)
+
+    object = CourseManager()
