@@ -2,10 +2,11 @@ from django.db import models
 
 # Create your models here.
 
-class CourseManager(models.Manager)
+class CourseManager(models.Manager):
     def search(self, query):
         return self.get_queryset().filter(
-            name__icontains=query, description__icontains=query
+            models.Q(name__icontains=query) | \
+            models.Q(description__icontains=query)
         )
 
 class Course(models.Model):
