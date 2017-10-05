@@ -4,4 +4,9 @@ from django.contrib import admin
 
 from .models import Course
 
-admin.site.register(Course)
+class CourseAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description', 'start_date', 'created_at']
+    search_fields = ['name']
+    prepopulated_fields = {'slug': ('name',)}
+
+admin.site.register(Course, CourseAdmin)
