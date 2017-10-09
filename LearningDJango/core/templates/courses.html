@@ -23,19 +23,21 @@
     <h3>Courses:</h3>
     {{courses}}
 
+
     <table class="table">
     <thead>
       <tr>
         <th>Courses Name: </th>
-        <th>Lastname</th>
+        <th>Description: </th>
       </tr>
     </thead>
     <tbody>
+     {% for course in courses %}
       <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>{{ course.name }}</td>
+        <td>{{ course.description }}</td>
       </tr>
+     {% endfor %}
     </tbody>
   </table>
 
